@@ -7,15 +7,9 @@
 - React-router
 - Redux
 - Redux-Saga
-- Bootstrap
+- Redux-Persist
+- MaterialUI
 - Javascript
-
-## Plugins
-
-- React-Pagination
-- React-Rating-Starts
-
-### Project is delpoyed to [Heroku](https://immense-hamlet-38818.herokuapp.com)
 
 # Instructions to launch project:
 
