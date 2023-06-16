@@ -19,7 +19,6 @@ const override = css`
 class MovieDetail extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.match.params.id !== nextProps.match.params.id) {
-      // this.props.loadRecMovies(nextProps.match.params.id);
       if (this.props.match.params.status === 'movie'){
         this.props.getaMovie(nextProps.match.params.id);
       }else{
@@ -29,7 +28,6 @@ class MovieDetail extends Component {
     }
   }
   componentDidMount() {
-    // this.props.loadRecMovies(this.props.match.params.id);
     if (this.props.match.params.status === "movie") {
       this.props.getaMovie(this.props.match.params.id);
     } else {

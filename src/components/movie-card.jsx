@@ -4,6 +4,7 @@ import StarIcon from "@material-ui/icons/StarBorder";
 import { cardType } from "../constants";
 import { Add, CloudDone, ThumbUpAlt } from "@material-ui/icons";
 import CustomButton from "./customButton";
+import { Link } from "react-router-dom/cjs/react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   titleCard: {
@@ -53,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 
 const MovieCard = props => {
   const imgUrl = "https://image.tmdb.org/t/p/w500";
-  const { res, type, onClickSuggest, isSuggest, isMyList } = props;
+  const { res, type, onClickSuggest, isSuggest, isMyList, pathName } = props;
   const classes = useStyles();
 
   return (
@@ -62,23 +63,25 @@ const MovieCard = props => {
         <StarIcon className={classes.starIcon} />
         <Typography variant="body2">{res.vote_average}</Typography>
       </div>
-      <Box
-        p={1}
-        display="flex"
-        justifyContent="center"
-        style={{ height: "100%" }}
-      >
-        <CardMedia
-          component="img"
-          image={imgUrl + res.poster_path}
-          alt="..."
-          className={classes.image}
-          onError={(e) => {
-            e.target.src =
-              "https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg";
-          }}
-        />
-      </Box>
+      <Link to={pathName}>
+        <Box
+          p={1}
+          display="flex"
+          justifyContent="center"
+          style={{ height: "100%" }}
+        >
+          <CardMedia
+            component="img"
+            image={imgUrl + res.poster_path}
+            alt="..."
+            className={classes.image}
+            onError={(e) => {
+              e.target.src =
+                "https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg";
+            }}
+          />
+        </Box>
+      </Link>
       <CardContent>
         <Typography
           variant="body1"
@@ -101,7 +104,10 @@ const MovieCard = props => {
               onClick={onClickSuggest}
             />
           </div>
-        ) : type === cardType.SUGGESTION || type === cardType.ADD ? (
+        ) : (
+          <></>
+        )}
+        {type === cardType.SUGGESTION || type === cardType.ADD ? (
           <div className={classes.suggestThis}>
             <CustomButton
               color="inherit"

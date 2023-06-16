@@ -143,6 +143,10 @@ const Amovie = ({ movieinfo }) => {
             className={classes.image}
             src={imgUrl + movieinfo.backdrop_path}
             alt="Gambar"
+            onError={(e) => {
+              e.target.src =
+                "https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg";
+            }}
           />
         </Box>
       </div>
@@ -159,6 +163,10 @@ const Amovie = ({ movieinfo }) => {
                 className={classes.image2}
                 src={imgUrl + movieinfo.backdrop_path}
                 alt="Gambar"
+                onError={(e) => {
+                  e.target.src =
+                    "https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg";
+                }}
               />
             </Box>
           </Grid>

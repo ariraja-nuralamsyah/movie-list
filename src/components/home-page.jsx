@@ -102,6 +102,18 @@ class MainPage extends Component {
     }
   }
 
+  getParamStatus = (value) => {
+    if (value === "suggest") {
+      return cardType.SUGGEST;
+    } else if (value === "suggestion") {
+      return cardType.SUGGESTION;
+    } else if (value === "add") {
+      return cardType.ADD;
+    }else {
+      return cardType.DEFAULT;
+    }
+  }
+
   handleOpen = () => {
     this.setState({ open: true });
   };
@@ -346,13 +358,7 @@ class MainPage extends Component {
           genres={genres}
           movies={movieTodisplay}
           type={
-            this.props.match.params.status === "suggest"
-              ? cardType.SUGGEST
-              : this.props.match.params.status === "suggestion"
-              ? cardType.SUGGESTION
-              : this.props.match.params.status === "add"
-              ? cardType.ADD
-              : cardType.DEFAULT
+            this.getParamStatus(this.props.match.params.status)
           }
         />
 

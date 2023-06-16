@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import MovieCard from "./movie-card";
-import { Link } from "react-router-dom";
 import { Grid, IconButton, Modal, withStyles } from "@material-ui/core";
 import thankyou from "../utils/thankyou.png";
 import { cardType } from "../constants";
@@ -72,8 +71,9 @@ class MovieContainer extends Component {
     return (
       <>
         <Grid container spacing={2}>
-          {(type === cardType.SUGGESTION
-            ? this.props.favoriteStorage.favorites != null ? this.props.favoriteStorage.favorites : movies
+          {(type === cardType.SUGGESTION &&
+          this.props.favoriteStorage.favorites != null
+            ? this.props.favoriteStorage.favorites
             : movies
           ).map((res) => (
             <Grid item xs={3} key={res.id}>
@@ -84,25 +84,25 @@ class MovieContainer extends Component {
                   type={type}
                   isSuggest={this.isFavorite(res)}
                   onClickSuggest={() => this.addToFavorite(res)}
+                  pathName={{
+                    pathname: `/home-page/${
+                      res.title != null ? "movie" : "tv"
+                    }/${res.id}`,
+                  }}
                 />
-              ) : type === cardType.SUGGESTION || type === cardType.ADD ? (
+              ) : (
                 <MovieCard
                   genres={genres}
                   res={res}
                   type={type}
                   isMyList={this.isMyList(res)}
                   onClickSuggest={() => this.addToList(res)}
-                />
-              ) : (
-                <Link
-                  to={{
+                  pathName={{
                     pathname: `/home-page/${
                       res.title != null ? "movie" : "tv"
                     }/${res.id}`,
                   }}
-                >
-                  <MovieCard genres={genres} res={res} type={type} />
-                </Link>
+                />
               )}
             </Grid>
           ))}
