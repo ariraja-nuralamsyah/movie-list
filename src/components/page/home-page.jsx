@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import Navbar from "./navbar";
-import MovieContainer from "./movie-container";
+import Navbar from "../navbar";
+import MovieContainer from "../movie-container";
 import {
   loadMovies,
   loadTvs,
@@ -10,12 +10,12 @@ import {
   setQuerySearchTv,
   loadSearchMovies,
   loadSearchTv,
-} from "../actions";
-import { cardType, navbarType } from "../constants";
+} from "../../actions";
+import { cardType, navbarType } from "../../constants";
 import { Typography, withStyles, Tabs, Tab, Modal, IconButton } from "@material-ui/core";
-import CustomInput from "./customInput";
+import CustomInput from "../customInput";
 import SearchIcon from "@material-ui/icons/Search";
-import CustomButton from "./customButton";
+import CustomButton from "../customButton";
 import CloseIcon from "@material-ui/icons/Close";
 import { Link, Subscriptions } from "@material-ui/icons";
 

@@ -1,12 +1,12 @@
 import React, { Fragment } from "react";
-import Navbar from "./navbar";
-import "../utils/myCss.css";
-import { navbarType } from "../constants";
+import Navbar from "../navbar";
+import "../../utils/myCss.css";
+import { navbarType } from "../../constants";
 import { Grid, Typography, makeStyles } from "@material-ui/core";
-import loginIcon from "../utils/login_icon.png";
-import CustomInput from "./customInput";
+import loginIcon from "../../utils/login_icon.png";
+import CustomInput from "../customInput";
 import { Email, LockOpen } from "@material-ui/icons";
-import CustomButton from "./customButton";
+import CustomButton from "../customButton";
 
 const useStyles = makeStyles((theme) => ({
   container: {

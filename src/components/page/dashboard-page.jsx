@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
-import Navbar from "./navbar";
-import "../utils/myCss.css";
-import { navbarType } from "../constants";
+import Navbar from "../navbar";
+import "../../utils/myCss.css";
+import { navbarType } from "../../constants";
 import { Grid, Typography, withStyles } from "@material-ui/core";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import {
@@ -9,7 +9,7 @@ import {
   loadTvs,
   loadFavorite,
   loadMyList,
-} from "../actions";
+} from "../../actions";
 import { connect } from "react-redux";
 
 class DashboardPage extends Component {

@@ -1,9 +1,9 @@
 import React from "react";
-import Navbar from "./navbar";
-import { navbarType } from "../constants";
-import notFound from "../utils/404_not_found.png";
+import Navbar from "../navbar";
+import { navbarType } from "../../constants";
+import notFound from "../../utils/404_not_found.png";
 import { makeStyles } from "@material-ui/core";
-import CustomButton from "./customButton";
+import CustomButton from "../customButton";
 
 const useStyles = makeStyles((theme) => ({
   container: {
