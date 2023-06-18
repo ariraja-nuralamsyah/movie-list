@@ -19,6 +19,7 @@ import storage from "redux-persist/lib/storage";
 import myListReducer from "./mylistReducer";
 import { encryptTransform } from "redux-persist-transform-encrypt";
 import { MY_SECRET_KEY } from "../constants";
+import authReducer from "./authReducer";
 
 const rootReducer = combineReducers({
   loading: loadingReducer,
@@ -37,6 +38,7 @@ const rootReducer = combineReducers({
   routing: routerReducer,
   favoriteStorage: favoriteReducer,
   myListStorage: myListReducer,
+  auth: authReducer,
 });
 
 const encryptor = encryptTransform({
@@ -46,7 +48,7 @@ const encryptor = encryptTransform({
 const persistConfig = {
   key: "root",
   storage,
-  transforms: [encryptor],
+  // transforms: [encryptor],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

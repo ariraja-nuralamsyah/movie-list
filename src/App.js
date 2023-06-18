@@ -11,6 +11,7 @@ import {
 import "./App.css";
 import "../src/utils/myCss.css";
 import DashboardPage from "./components/page/dashboard-page";
+import { connect } from "react-redux";
 
 const theme = createTheme({
   typography: {
@@ -18,18 +19,38 @@ const theme = createTheme({
   },
 });
 class App extends Component {
+
   render() {
+    const { isLoggedIn } = this.props;
     return (
       <ThemeProvider theme={theme}>
         <Switch>
           <Route path="/home-page/:status/:id" component={MovieDetail} />
           <Route path="/home-page/:status" component={HomePage} />
-          <Route path="/dashboard/:status" component={HomePage} />
-          <Route path="/dashboard" component={DashboardPage} />
+          <Route
+            path="/dashboard/:status"
+            render={(props) =>
+              isLoggedIn ? <HomePage {...props} /> : <Redirect to="/login" />
+            }
+          />
+          <Route
+            path="/dashboard"
+            render={(props) =>
+              isLoggedIn ? (
+                <DashboardPage {...props} />
+              ) : (
+                <Redirect to="/login" />
+              )
+            }
+          />
           <Route path="/home-page" component={HomePage} />
           <Route path="/not-found" component={NotFound} />
-          <Route path="/login" component={LoginPage} />
-          <Route path="/login" component={LoginPage} />
+          <Route
+            path="/login"
+            render={() =>
+              isLoggedIn ? <Redirect to="/dashboard" /> : <LoginPage />
+            }
+          />
           <Redirect from="/" exact to="/home-page" />
           <Redirect to="/not-found" />
         </Switch>
@@ -38,4 +59,8 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  isLoggedIn: state.auth.isLoggedIn,
+});
+
+export default connect(mapStateToProps)(App);

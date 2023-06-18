@@ -212,224 +212,232 @@ class MainPage extends Component {
         ) : (
           <Navbar type={navbarType.HOME} />
         )}
-
-        {this.props.match.params.status == null ? (
-          <>
-            <Typography variant="h3" className={classes.title}>
-              MaileHereko
-            </Typography>
-            <Typography variant="body1" className={classes.subTitle}>
-              List of movies and TV Shows, I, Pramod Poudel have watched till
-              date.
-              <br />
-              Explore what I have watched and also feel free to make a
-              suggestion. 😉
-            </Typography>
-          </>
-        ) : (
-          <>
-            {this.props.match.params.status === "suggest" ? (
-              <>
-                <Typography variant="h3" className={classes.title}>
-                  {this.getTypeContent(this.props.match.params.status)}
-                </Typography>
-                <Typography variant="body1" className={classes.subTitle}>
-                  I will really appericiate it if you take time to suggest me
-                  something good to watch.
-                </Typography>
-              </>
-            ) : (
-              <>
-                {this.props.match.params.status === "add" ||
-                this.props.match.params.status === "suggestion" ? (
-                  <>
-                    <Typography variant="h3" className={classes.title}>
-                      {this.getTypeContent(this.props.match.params.status)}
-                    </Typography>
-                    <br />
-                  </>
-                ) : (
-                  <>
-                    <Typography variant="body1" className={classes.subTitle2}>
-                      MaileHereko
-                    </Typography>
-                    <Typography variant="h3" className={classes.title2}>
-                      {this.getTypeContent(this.props.match.params.status)}
-                    </Typography>
-                  </>
-                )}
-              </>
-            )}
-          </>
-        )}
         <div
-          style={
-            this.props.match.params.status === "suggest" ||
-            this.props.match.params.status === "add"
-              ? { position: "relative", display: "inline-flex" }
-              : {}
-          }
+          style={{
+            padding: "0px 100px 0px",
+          }}
         >
-          {this.props.match.params.status !== "suggestion" ? (
-            <div style={{ width: "334px" }}>
-              <CustomInput
-                handleSubmit={this.handleSubmit}
-                handleChange={this.handleChangeSearch}
-                value={searchValue}
-                placeholder={this.getPlaceHolderSearchInput(
-                  this.props.match.params.status == null
-                    ? tabValue
-                    : this.props.match.params.status
-                )}
-                leftIcon={
-                  <SearchIcon style={{ color: "rgba(71, 80, 105, 1)" }} />
-                }
-              />
-            </div>
+          {this.props.match.params.status == null ? (
+            <>
+              <Typography variant="h3" className={classes.title}>
+                MaileHereko
+              </Typography>
+              <Typography variant="body1" className={classes.subTitle}>
+                List of movies and TV Shows, I, Pramod Poudel have watched till
+                date.
+                <br />
+                Explore what I have watched and also feel free to make a
+                suggestion. 😉
+              </Typography>
+            </>
           ) : (
-            <></>
+            <>
+              {this.props.match.params.status === "suggest" ? (
+                <>
+                  <Typography variant="h3" className={classes.title}>
+                    {this.getTypeContent(this.props.match.params.status)}
+                  </Typography>
+                  <Typography variant="body1" className={classes.subTitle}>
+                    I will really appericiate it if you take time to suggest me
+                    something good to watch.
+                  </Typography>
+                </>
+              ) : (
+                <>
+                  {this.props.match.params.status === "add" ||
+                  this.props.match.params.status === "suggestion" ? (
+                    <>
+                      <Typography variant="h3" className={classes.title}>
+                        {this.getTypeContent(this.props.match.params.status)}
+                      </Typography>
+                      <br />
+                    </>
+                  ) : (
+                    <>
+                      <Typography variant="body1" className={classes.subTitle2}>
+                        MaileHereko
+                      </Typography>
+                      <Typography variant="h3" className={classes.title2}>
+                        {this.getTypeContent(this.props.match.params.status)}
+                      </Typography>
+                    </>
+                  )}
+                </>
+              )}
+            </>
           )}
+          <div
+            style={
+              this.props.match.params.status === "suggest" ||
+              this.props.match.params.status === "add"
+                ? { position: "relative", display: "inline-flex" }
+                : {}
+            }
+          >
+            {this.props.match.params.status !== "suggestion" ? (
+              <div style={{ width: "334px" }}>
+                <CustomInput
+                  handleSubmit={this.handleSubmit}
+                  handleChange={this.handleChangeSearch}
+                  value={searchValue}
+                  placeholder={this.getPlaceHolderSearchInput(
+                    this.props.match.params.status == null
+                      ? tabValue
+                      : this.props.match.params.status
+                  )}
+                  leftIcon={
+                    <SearchIcon style={{ color: "rgba(71, 80, 105, 1)" }} />
+                  }
+                />
+              </div>
+            ) : (
+              <></>
+            )}
 
-          {this.props.match.params.status === "suggest" ||
-          this.props.match.params.status === "add" ? (
-            <CustomButton
-              label="Search"
-              color="primary"
-              variant="contained"
-              onClick={() => {
-                this.props.setQuerySearchMovie(this.state.searchValue);
-                this.props.loadSearchMovies(1);
-                this.props.setQuerySearchTv(this.state.searchValue);
-                this.props.loadSearchTv(1);
-              }}
-            />
-          ) : (
-            <></>
-          )}
-        </div>
-        {this.props.match.params.status == null ? (
-          <div className={classes.tab}>
-            <Tabs
-              value={tabValue}
-              onChange={this.handleChangeTab}
-              TabIndicatorProps={{ className: classes.indicator }}
-            >
-              <Tab
-                label="All"
-                className={
-                  tabValue === 0 ? classes.activeTab : classes.transparentTab
-                }
-              />
-              <Tab
-                label="Movie"
-                className={
-                  tabValue === 1 ? classes.activeTab : classes.transparentTab
-                }
-              />
-              <Tab
-                label="TV Show"
-                className={
-                  tabValue === 2 ? classes.activeTab : classes.transparentTab
-                }
-              />
-            </Tabs>
-          </div>
-        ) : (
-          <></>
-        )}
-        {this.props.match.params.status !== "suggest" &&
-        this.props.match.params.status !== "add" &&
-        this.props.match.params.status !== "suggestion" ? (
-          <>
-            <Typography variant="h5" className={classes.typeContent} noWrap>
-              {this.props.match.params == null
-                ? { tabContent }({ totalMovies })
-                : totalMovies + " items"}
-            </Typography>
-          </>
-        ) : (
-          <>
-            <br />
-            <br />
-          </>
-        )}
-
-        <MovieContainer
-          genres={genres}
-          movies={movieTodisplay}
-          type={
-            this.getParamStatus(this.props.match.params.status)
-          }
-        />
-
-        {this.props.match.params.status === "suggest" &&
-        movieTodisplay.length !== 0 ? (
-          <div style={{ paddingBottom: "100px" }}>
-            <h6
-              style={{ color: "rgba(118, 126, 148, 1)", textAlign: "center" }}
-            >
-              Didin't find the one you looking for?
-            </h6>
-            <div className={classes.container}>
+            {this.props.match.params.status === "suggest" ||
+            this.props.match.params.status === "add" ? (
               <CustomButton
-                label="Suggest Manually"
+                label="Search"
                 color="primary"
                 variant="contained"
-                onClick={this.handleOpen}
-                style={{ textAlign: "center" }}
+                onClick={() => {
+                  this.props.setQuerySearchMovie(this.state.searchValue);
+                  this.props.loadSearchMovies(1);
+                  this.props.setQuerySearchTv(this.state.searchValue);
+                  this.props.loadSearchTv(1);
+                }}
               />
-            </div>
+            ) : (
+              <></>
+            )}
           </div>
-        ) : (
-          <>
-            <br />
-            <br />
-          </>
-        )}
-        <Modal open={open} onClose={this.handleClose}>
-          <div className={classes.modalContainer}>
-            <div className={classes.modalContent}>
-              <div className={classes.closeButtonContainer}>
-                <IconButton
-                  className={classes.closeButton}
-                  onClick={this.handleClose}
-                >
-                  <CloseIcon className={classes.closeIcon} />
-                </IconButton>
-              </div>
-              <h4 style={{ color: "white", textAlign: "center" }}>
-                Suggest something to watch
-              </h4>
-              <CustomInput
-                // handleSubmit={this.handleSubmit}
-                // handleChange={this.handleChangeSearch}
-                // value={searchValue}
-                placeholder="Title"
-                leftIcon={
-                  <Subscriptions style={{ color: "rgba(71, 80, 105, 1)" }} />
-                }
-              />
+          {this.props.match.params.status == null ? (
+            <div className={classes.tab}>
+              <Tabs
+                value={tabValue}
+                onChange={this.handleChangeTab}
+                TabIndicatorProps={{ className: classes.indicator }}
+              >
+                <Tab
+                  label="All"
+                  className={
+                    tabValue === 0 ? classes.activeTab : classes.transparentTab
+                  }
+                />
+                <Tab
+                  label="Movie"
+                  className={
+                    tabValue === 1 ? classes.activeTab : classes.transparentTab
+                  }
+                />
+                <Tab
+                  label="TV Show"
+                  className={
+                    tabValue === 2 ? classes.activeTab : classes.transparentTab
+                  }
+                />
+              </Tabs>
+            </div>
+          ) : (
+            <></>
+          )}
+          {this.props.match.params.status !== "suggest" &&
+          this.props.match.params.status !== "add" &&
+          this.props.match.params.status !== "suggestion" ? (
+            <>
+              <Typography variant="h5" className={classes.typeContent} noWrap>
+                {this.props.match.params.status == null ? (
+                  <>
+                    {tabContent}
+                    <span style={{ fontSize: "0.6em" }}>({totalMovies})</span>
+                  </>
+                ) : (
+                  totalMovies + " items"
+                )}
+              </Typography>
+            </>
+          ) : (
+            <>
               <br />
-              <CustomInput
-                // handleSubmit={this.handleSubmit}
-                // handleChange={this.handleChangeSearch}
-                // value={searchValue}
-                placeholder="Link (if available)"
-                leftIcon={<Link style={{ color: "rgba(71, 80, 105, 1)" }} />}
-              />
               <br />
+            </>
+          )}
+
+          <MovieContainer
+            genres={genres}
+            movies={movieTodisplay}
+            type={this.getParamStatus(this.props.match.params.status)}
+          />
+
+          {this.props.match.params.status === "suggest" &&
+          movieTodisplay.length !== 0 ? (
+            <div style={{ paddingBottom: "100px" }}>
+              <h6
+                style={{ color: "rgba(118, 126, 148, 1)", textAlign: "center" }}
+              >
+                Didin't find the one you looking for?
+              </h6>
               <div className={classes.container}>
                 <CustomButton
-                  label="Suggest"
+                  label="Suggest Manually"
                   color="primary"
                   variant="contained"
-                  // onClick={() => props.history.push("/")}
-                  style={{ width: "100%" }}
+                  onClick={this.handleOpen}
+                  style={{ textAlign: "center" }}
                 />
               </div>
             </div>
-          </div>
-        </Modal>
+          ) : (
+            <>
+              <br />
+              <br />
+            </>
+          )}
+          <Modal open={open} onClose={this.handleClose}>
+            <div className={classes.modalContainer}>
+              <div className={classes.modalContent}>
+                <div className={classes.closeButtonContainer}>
+                  <IconButton
+                    className={classes.closeButton}
+                    onClick={this.handleClose}
+                  >
+                    <CloseIcon className={classes.closeIcon} />
+                  </IconButton>
+                </div>
+                <h4 style={{ color: "white", textAlign: "center" }}>
+                  Suggest something to watch
+                </h4>
+                <CustomInput
+                  // handleSubmit={this.handleSubmit}
+                  // handleChange={this.handleChangeSearch}
+                  // value={searchValue}
+                  placeholder="Title"
+                  leftIcon={
+                    <Subscriptions style={{ color: "rgba(71, 80, 105, 1)" }} />
+                  }
+                />
+                <br />
+                <CustomInput
+                  // handleSubmit={this.handleSubmit}
+                  // handleChange={this.handleChangeSearch}
+                  // value={searchValue}
+                  placeholder="Link (if available)"
+                  leftIcon={<Link style={{ color: "rgba(71, 80, 105, 1)" }} />}
+                />
+                <br />
+                <div className={classes.container}>
+                  <CustomButton
+                    label="Suggest"
+                    color="primary"
+                    variant="contained"
+                    // onClick={() => props.history.push("/")}
+                    style={{ width: "100%" }}
+                  />
+                </div>
+              </div>
+            </div>
+          </Modal>
+        </div>
       </Fragment>
     );
   }

@@ -24,75 +24,83 @@ class DashboardPage extends Component {
     return (
       <Fragment>
         <Navbar type={navbarType.DASHBOARD} />
-        <Typography variant="h3" className={classes.title}>
-          Welcome
-        </Typography>
-        <br />
-        <Grid container spacing={3}>
-          <Grid item xs={3}>
-            <div className={classes.box}>
-              <div style={{ color: "white", textAlign: "center" }}>
-                <h2>{this.props.movies.length}</h2>
-                <p>Movies</p>
-              </div>
-            </div>
-          </Grid>
-          <Grid item xs={3}>
-            <div className={classes.box}>
-              <div style={{ color: "white", textAlign: "center" }}>
-                <h3>{this.props.tvs.length}</h3>
-                <p>TV Shows</p>
-              </div>
-            </div>
-          </Grid>
-          <Grid item xs={3}>
-            <div className={classes.box}>
-              <div style={{ color: "white", textAlign: "center" }}>
-                <h2>{this.props.favoriteStorage.favorites.length}</h2>
-                <p>Suggestions</p>
-              </div>
-            </div>
-          </Grid>
-          <Grid item xs={3}>
-            <div className={classes.box}>
-              <div style={{ color: "white", textAlign: "center" }}>
-                <h2>{this.props.myListStorage.mylist.length}</h2>
-                <p>My Movie List</p>
-              </div>
-            </div>
-          </Grid>
-        </Grid>
-        <h5 style={{ color: "white", textAlign: "center", paddingTop: "30px" }}>
-          Quick Links
-        </h5>
-        <Grid container spacing={3}>
-          <Grid item xs={6}>
-            <Link
-              to={{
-                pathname: `/dashboard/suggestion`,
-              }}
-            >
+        <div
+          style={{
+            padding: "0px 100px 0px",
+          }}
+        >
+          <Typography variant="h3" className={classes.title}>
+            Welcome
+          </Typography>
+          <br />
+          <Grid container spacing={3}>
+            <Grid item xs={3}>
               <div className={classes.box}>
                 <div style={{ color: "white", textAlign: "center" }}>
-                  <h4>Suggestions</h4>
+                  <h2>{this.props.movies.length}</h2>
+                  <p>Movies</p>
                 </div>
               </div>
-            </Link>
-          </Grid>
-          <Grid item xs={6}>
-            <Link
-              to={{
-                pathname: `/dashboard/add`,
-              }}
-            >
+            </Grid>
+            <Grid item xs={3}>
               <div className={classes.box}>
                 <div style={{ color: "white", textAlign: "center" }}>
-                  <h4>Add</h4>
+                  <h3>{this.props.tvs.length}</h3>
+                  <p>TV Shows</p>
                 </div>
               </div>
-            </Link>
+            </Grid>
+            <Grid item xs={3}>
+              <div className={classes.box}>
+                <div style={{ color: "white", textAlign: "center" }}>
+                  <h2>{this.props.favoriteStorage.favorites.length}</h2>
+                  <p>Suggestions</p>
+                </div>
+              </div>
+            </Grid>
+            <Grid item xs={3}>
+              <div className={classes.box}>
+                <div style={{ color: "white", textAlign: "center" }}>
+                  <h2>{this.props.myListStorage.mylist.length}</h2>
+                  <p>My Movie List</p>
+                </div>
+              </div>
+            </Grid>
           </Grid>
-        </Grid>
+          <h5
+            style={{ color: "white", textAlign: "center", paddingTop: "30px" }}
+          >
+            Quick Links
+          </h5>
+          <Grid container spacing={3}>
+            <Grid item xs={6}>
+              <Link
+                to={{
+                  pathname: `/dashboard/suggestion`,
+                }}
+              >
+                <div className={classes.box}>
+                  <div style={{ color: "white", textAlign: "center" }}>
+                    <h4>Suggestions</h4>
+                  </div>
+                </div>
+              </Link>
+            </Grid>
+            <Grid item xs={6}>
+              <Link
+                to={{
+                  pathname: `/dashboard/add`,
+                }}
+              >
+                <div className={classes.box}>
+                  <div style={{ color: "white", textAlign: "center" }}>
+                    <h4>Add</h4>
+                  </div>
+                </div>
+              </Link>
+            </Grid>
+          </Grid>
+        </div>
       </Fragment>
     );
   }

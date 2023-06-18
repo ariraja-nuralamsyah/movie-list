@@ -39,33 +39,37 @@ class MovieContainer extends Component {
     if (this.isFavorite(value) === false) {
       this.props.saveFavorite(value);
       this.handleOpen();
-    }else{
+    } else {
       this.props.deleteFavorite(value.id);
     }
   };
 
-  addToList = (value) => {
-    if (this.isMyList(value) === false) {
-      this.props.saveMyList(value);
-    }else{
-      this.props.deleteMyList(value.id);
+  addToList = (value, username) => {
+    if (this.isMyList(value, username) === false) {
+      this.props.saveMyList(value, username);
+    } else {
+      this.props.deleteMyList(value.id, username);
     }
   };
 
   isFavorite = (value) => {
     if (this.props.favoriteStorage.favorites == null) return false;
 
-    return this.props.favoriteStorage.favorites.some((obj) => obj.id === value.id);
+    return this.props.favoriteStorage.favorites.some(
+      (obj) => obj.id === value.id
+    );
   };
 
-  isMyList = (value) => {
-    if (this.props.myListStorage.mylist == null) return false;
-      
-    return this.props.myListStorage.mylist.some((obj) => obj.id === value.id);
+  isMyList = (value, username) => {
+    if (this.props.myListStorage.mylist.filter((obj) => obj.username === username).length === 0) return false;
+
+    return this.props.myListStorage.mylist
+      .filter((obj) => obj.username === username)[0]
+      .list.some((obj) => obj.id === value.id);
   };
 
   render() {
-    const { movies, genres, type } = this.props;
+    const { movies, genres, type, auth } = this.props;
     const { classes } = this.props;
     const { open } = this.state;
     return (
@@ -95,8 +99,8 @@ class MovieContainer extends Component {
                   genres={genres}
                   res={res}
                   type={type}
-                  isMyList={this.isMyList(res)}
-                  onClickSuggest={() => this.addToList(res)}
+                  isMyList={this.isMyList(res, auth.username)}
+                  onClickSuggest={() => this.addToList(res, auth.username)}
                   pathName={{
                     pathname: `/home-page/${
                       res.title != null ? "movie" : "tv"
@@ -181,20 +185,28 @@ container: {
   },
 });
 
-const mapStateToProps = ({ favoriteData, favoriteStorage, myListStorage, favorites }) => ({
+const mapStateToProps = ({
   favoriteData,
   favoriteStorage,
   myListStorage,
   favorites,
+  auth,
+}) => ({
+  favoriteData,
+  favoriteStorage,
+  myListStorage,
+  favorites,
+  auth,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   saveFavorite: (favorites) => dispatch(saveFavorite(favorites)),
   loadFavorite: () => dispatch(loadFavorite()),
-  saveMyList: (mylist) => dispatch(saveMyList(mylist)),
+  saveMyList: (mylist, username) => dispatch(saveMyList(mylist, username)),
   loadMyList: () => dispatch(loadMyList()),
   deleteFavorite: (movieId) => dispatch(deleteFavorite(movieId)),
-  deleteMyList: (movieId) => dispatch(deleteMyList(movieId)),
+  deleteMyList: (movieId, username) =>
+    dispatch(deleteMyList(movieId, username)),
 });
 
 export default connect(

@@ -27,6 +27,14 @@ import {
 
 import { saveFavorite, loadFavorite, deleteFavorite, } from "./favorite";
 import { saveMyList, loadMyList, deleteMyList } from "./myList";
+import {
+  loginRequest,
+  loginSuccess,
+  loginFailure,
+  logoutRequest,
+  logoutSuccess,
+  logoutFailure,
+} from "./auth";
 
 export {
   // Movie
@@ -60,4 +68,11 @@ export {
   saveMyList,
   loadMyList,
   deleteMyList,
+  // Login
+  loginRequest,
+  loginSuccess,
+  loginFailure,
+  logoutRequest,
+  logoutSuccess,
+  logoutFailure,
 };

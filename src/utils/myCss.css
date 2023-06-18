@@ -1,10 +1,9 @@
 body {
-  /* background-image: url('Background.png'); */
+  background-image: url('Background.png');
   background-color: rgba(18, 24, 41, 1);
   background-repeat: no-repeat;
-  background-size: cover;
-  /* background-position: center center; */
-  padding: 0px 100px 0px;
+  /* background-size: cover; */
+  background-position: center center;
 }
 
 .card {

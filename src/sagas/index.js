@@ -6,6 +6,8 @@ import watchMovieInfoLoad from "./amovieSaga";
 import watchTvInfoLoad from "./atvSaga";
 import watchTvLoad from "./tvSaga";
 import { all, fork } from "redux-saga/effects";
+import { watchLogin } from "./loginSaga";
+import { watchLogout } from "./logoutSaga";
 function* rootSaga() {
   yield all([
     fork(watchMovieLoad),
@@ -15,6 +17,8 @@ function* rootSaga() {
     fork(watchTvInfoLoad),
     fork(watchSearchQueryMovie),
     fork(watchSearchQueryTv),
+    fork(watchLogin),
+    fork(watchLogout),
   ]);
 }
 

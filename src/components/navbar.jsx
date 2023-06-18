@@ -11,12 +11,15 @@ import { navbarType } from "../constants";
 import CustomButton from "./customButton";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom/cjs/react-router-dom";
+import { logoutRequest } from "../actions";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
     backgroundColor: "rgba(18, 24, 41, 0.8)",
     boxShadow: "none",
     borderBottom: "none",
+    padding: "0px 100px 0px",
   },
   button: {
     display: "flex",
@@ -38,6 +41,11 @@ const Navbar = (prop) => {
     } else {
       history.push(destination);
     }
+  };
+
+  const { isLoggedIn, handleLogout, sessionId } = prop;
+  const handleLogoutClick = (sessionId) => {
+    handleLogout(sessionId);
   };
 
   return (
@@ -91,7 +99,10 @@ const Navbar = (prop) => {
             <CustomButton
               color="inherit"
               leftIcon={<LogoutIcon className={classes.icon} />}
-              label="Logout"
+              label={isLoggedIn ? "Logout" : "Login"}
+              onClick={() =>
+                isLoggedIn ? handleLogoutClick(sessionId) : handleClick("/login")
+              }
             />
           </>
         )}
@@ -100,4 +111,13 @@ const Navbar = (prop) => {
   );
 };
 
-export default Navbar;
+const mapStateToProps = (state) => ({
+  isLoggedIn: state.auth.isLoggedIn,
+  sessionId: state.auth.sessionId,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  handleLogout: (sessionId) => dispatch(logoutRequest(sessionId)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

@@ -120,7 +120,11 @@ const Amovie = ({ movieinfo }) => {
   return (
     <div>
       <Navbar type={navbarType.HOME} />
-      <div>
+      <div
+        style={{
+          padding: "0px 100px 0px",
+        }}
+      >
         <div className={classes.caption}>
           <div className={classes.captionContainer}>
             <Typography variant="body1" className={classes.subTitle}>

@@ -1,7 +1,7 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
-import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
+import { Icon } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   textField: {
@@ -23,22 +23,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CustomInput = ({
-  handleSubmit,
   handleChange,
+  handleKeyPress,
   value,
   leftIcon, 
   rightIcon,
   placeholder,
   label,
+  type,
+  style
 }) => {
   const classes = useStyles();
 
    const renderLeftIcon = () => {
      if (leftIcon) {
        return (
-         <IconButton className={classes.iconButton} type="submit">
+         <Icon className={classes.iconButton} type="submit">
            {leftIcon}
-         </IconButton>
+         </Icon>
        );
      }
      return null;
@@ -47,29 +49,30 @@ const CustomInput = ({
    const renderRightIcon = () => {
      if (rightIcon) {
        return (
-         <IconButton className={classes.iconButton} type="submit">
+         <Icon className={classes.iconButton} type="submit">
            {rightIcon}
-         </IconButton>
+         </Icon>
        );
      }
      return null;
    };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <TextField
-        className={classes.textField}
-        label={label}
-        placeholder={placeholder}
-        value={value}
-        onChange={handleChange}
-        variant="outlined"
-        InputProps={{
-          startAdornment: renderLeftIcon(),
-          endAdornment: renderRightIcon(),
-        }}
-      />
-    </form>
+    <TextField
+      className={classes.textField}
+      label={label}
+      placeholder={placeholder}
+      value={value}
+      onChange={handleChange}
+      type={type}
+      variant="outlined"
+      InputProps={{
+        startAdornment: renderLeftIcon(),
+        endAdornment: renderRightIcon(),
+      }}
+      style={style}
+      onKeyPress={handleKeyPress}
+    />
   );
 };
 

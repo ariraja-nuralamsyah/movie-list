@@ -22,22 +22,28 @@ const NotFound = props => {
   return (
     <div>
       <Navbar type={navbarType.HOME} />
-      <div className={classes.container}>
-        <img src={notFound} alt="Not Found" className={classes.image} />
-      </div>
-      <h1 style={{ color: "white", textAlign: "center" }}>Lost your way?</h1>
-      <h6 style={{ color: "rgba(142, 149, 169, 1)", textAlign: "center" }}>
-        Oops! This is awkward. You are looking for something that doesn't
-        actually exist.
-      </h6>
-      <div className={classes.container}>
-        <CustomButton
-          label="Go Home"
-          color="primary"
-          variant="contained"
-          onClick={() => props.history.push("/")}
-          style={{ textAlign: "center" }}
-        />
+      <div
+        style={{
+          padding: "0px 100px 0px",
+        }}
+      >
+        <div className={classes.container}>
+          <img src={notFound} alt="Not Found" className={classes.image} />
+        </div>
+        <h1 style={{ color: "white", textAlign: "center" }}>Lost your way?</h1>
+        <h6 style={{ color: "rgba(142, 149, 169, 1)", textAlign: "center" }}>
+          Oops! This is awkward. You are looking for something that doesn't
+          actually exist.
+        </h6>
+        <div className={classes.container}>
+          <CustomButton
+            label="Go Home"
+            color="primary"
+            variant="contained"
+            onClick={() => props.history.push("/")}
+            style={{ textAlign: "center" }}
+          />
+        </div>
       </div>
     </div>
   );

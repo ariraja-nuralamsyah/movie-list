@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import Navbar from "../navbar";
 import "../../utils/myCss.css";
 import { navbarType } from "../../constants";
@@ -7,6 +7,8 @@ import loginIcon from "../../utils/login_icon.png";
 import CustomInput from "../customInput";
 import { Email, LockOpen } from "@material-ui/icons";
 import CustomButton from "../customButton";
+import { loginRequest } from "./../../actions";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -25,6 +27,23 @@ const useStyles = makeStyles((theme) => ({
 
 const LoginPage = props => {
     const classes = useStyles();
+
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+     const { handleLogin, error } = props;
+
+     const handleSubmit = (e) => {
+       e.preventDefault();
+       handleLogin(username, password);
+     };
+
+     const handleKeyPress = (e) => {
+       if (e.key === "Enter") {
+         handleSubmit(e);
+       }
+     };
+  
     return (
       <Fragment>
         <Navbar type={navbarType.DASHBOARD} />
@@ -34,6 +53,9 @@ const LoginPage = props => {
           direction="row"
           justifyContent="center"
           alignItems="center"
+          style={{
+            padding: "0px 100px 0px",
+          }}
         >
           <Grid item xs={6}>
             <div className={classes.container}>
@@ -41,39 +63,53 @@ const LoginPage = props => {
             </div>
           </Grid>
           <Grid item xs={6}>
+            {error && <p style={{ color: "red" }}>{error}</p>}
             <Typography variant="h3" className={classes.title}>
               Login
             </Typography>
-            <br />
-            <CustomInput
-              // handleSubmit={this.handleSubmit}
-              // handleChange={this.handleChangeSearch}
-              // value={searchValue}
-              placeholder="Title"
-              leftIcon={<Email style={{ color: "rgba(71, 80, 105, 1)" }} />}
-            />
-            <br />
-            <CustomInput
-              // handleSubmit={this.handleSubmit}
-              // handleChange={this.handleChangeSearch}
-              // value={searchValue}
-              placeholder="Link (if available)"
-              leftIcon={<LockOpen style={{ color: "rgba(71, 80, 105, 1)" }} />}
-            />
-            <br />
-            <div className={classes.container}>
-              <CustomButton
-                label="Suggest"
-                color="primary"
-                variant="contained"
-                style={{ width: "100%" }}
-                // onClick={() => props.history.push("/")}
+            <form onSubmit={handleSubmit}>
+              <CustomInput
+                placeholder="Username / Email"
+                leftIcon={<Email style={{ color: "rgba(71, 80, 105, 1)" }} />}
+                value={username}
+                handleChange={(e) => setUsername(e.target.value)}
+                handleKeyPress={handleKeyPress}
+                style={{ paddingTop: "20px" }}
               />
-            </div>
+              <CustomInput
+                placeholder="Password"
+                leftIcon={
+                  <LockOpen style={{ color: "rgba(71, 80, 105, 1)" }} />
+                }
+                type="password"
+                value={password}
+                handleChange={(e) => setPassword(e.target.value)}
+                handleKeyPress={handleKeyPress}
+                style={{ paddingTop: "20px", paddingBottom: "20px" }}
+              />
+              <div className={classes.container}>
+                <CustomButton
+                  label="Login"
+                  color="primary"
+                  variant="contained"
+                  style={{ width: "100%" }}
+                  onClick={handleSubmit}
+                />
+              </div>
+            </form>
           </Grid>
         </Grid>
       </Fragment>
     );
 }
 
-export default LoginPage;
+const mapStateToProps = (state) => ({
+  error: state.auth.error,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  handleLogin: (username, password) =>
+    dispatch(loginRequest(username, password)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
