@@ -48,7 +48,7 @@ const encryptor = encryptTransform({
 const persistConfig = {
   key: "root",
   storage,
-  // transforms: [encryptor],
+  transforms: [encryptor],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
