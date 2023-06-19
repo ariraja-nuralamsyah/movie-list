@@ -57,9 +57,11 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "100px",
   },
   titleInfo: {
+    color: "white",
     paddingTop: "15px",
   },
   info: {
+    color: "white",
     paddingTop: "5px",
   },
   rating: {
@@ -136,7 +138,7 @@ const Amovie = ({ movieinfo }) => {
             </Box>
           </Grid>
           <Grid item xs={8} style={{ paddingLeft: "30px" }}>
-            <div className="col-9 movieInfo">
+            <div style={{color: "white"}}>
               <h1 style={{ width: "100%" }}>
                 {movieinfo.tagline !== ""
                   ? movieinfo.tagline
