@@ -69,7 +69,7 @@ class MovieContainer extends Component {
   };
 
   render() {
-    const { movies, genres, type, auth } = this.props;
+    const { movies,  type, auth } = this.props;
     const { classes } = this.props;
     const { open } = this.state;
     return (
@@ -83,7 +83,6 @@ class MovieContainer extends Component {
             <Grid item xs={3} key={res.id}>
               {type === cardType.SUGGEST ? (
                 <MovieCard
-                  genres={genres}
                   res={res}
                   type={type}
                   isSuggest={this.isFavorite(res)}
@@ -96,7 +95,6 @@ class MovieContainer extends Component {
                 />
               ) : (
                 <MovieCard
-                  genres={genres}
                   res={res}
                   type={type}
                   isMyList={this.isMyList(res, auth.username)}

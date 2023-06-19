@@ -5,8 +5,6 @@ const loadingReducer = (state = false, action) => {
     case MOVIES.LOAD:
     case TV.LOAD:
       return true;
-    case MOVIES.GENRE_LOAD:
-      return true;
     case MOVIES.LOAD_SUCCESS:
     case TV.LOAD_SUCCESS:
       return false;

@@ -4,12 +4,8 @@ import loadingReducer from "./loadingReducer";
 import movieReducer from "./movieReducer";
 import errorReducer from "./errorReducer";
 import pageReducer from "./pageReducer";
-import genreReducer from "./genreReducer";
-import recomendReducer from "./recomendReducer";
-import idReducer from "./idReducer";
 import queryReducer from "./queryReducer";
 import searchMovieReducer from "./searchMovieReducer";
-import countReducer from "./countReducer";
 import singleReducer from "./singleReducer";
 import tvReducer from "./tvReducer";
 import searchTvReducer from "./searchTvReducer";
@@ -25,16 +21,12 @@ const rootReducer = combineReducers({
   loading: loadingReducer,
   movies: movieReducer,
   tvs: tvReducer,
-  movieid: idReducer,
   error: errorReducer,
-  genres: genreReducer,
   currentpage: pageReducer,
   movieinfo: singleReducer,
-  recmovies: recomendReducer,
   searchquery: queryReducer,
   searchmovies: searchMovieReducer,
   searchtv: searchTvReducer,
-  totalresults: countReducer,
   routing: routerReducer,
   favoriteStorage: favoriteReducer,
   myListStorage: myListReducer,

@@ -22,9 +22,7 @@ const NotFound = props => {
   return (
     <div>
       <Navbar type={navbarType.HOME} />
-      <div
-        className="padding-body"
-      >
+      <div className="padding-body">
         <div className={classes.container}>
           <img src={notFound} alt="Not Found" className={classes.image} />
         </div>

@@ -1,5 +1,4 @@
 import watchMovieLoad from "./movieSaga";
-import watchGenreLoad from "./genreSaga";
 import watchSearchQueryMovie from "./searchMovieSaga";
 import watchSearchQueryTv from "./searchTvSaga";
 import watchMovieInfoLoad from "./amovieSaga";
@@ -12,7 +11,6 @@ function* rootSaga() {
   yield all([
     fork(watchMovieLoad),
     fork(watchTvLoad),
-    fork(watchGenreLoad),
     fork(watchMovieInfoLoad),
     fork(watchTvInfoLoad),
     fork(watchSearchQueryMovie),

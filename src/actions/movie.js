@@ -24,15 +24,7 @@ const setSearchMovies = movies => ({
   type: MOVIES.SEARCH_SUCCESS,
   movies
 });
-// load genres
-const loadGenre = () => ({
-  type: MOVIES.GENRE_LOAD
-});
 
-const setGenres = genres => ({
-  type: MOVIES.GENRE_SUCCESS + "_ASYNC",
-  genres
-});
 // single movie info
 const getaMovie = id => ({
   type: MOVIES.GETAMOVIE,
@@ -65,8 +57,6 @@ export {
   loadSearchMovies,
   setQuerySearchMovie,
   setSearchMovies,
-  loadGenre,
-  setGenres,
   getaMovie,
   setaMovie,
   clearStateMovie,
