@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
-import Navbar from "../navbar";
-import "../../utils/myCss.css";
-import { navbarType } from "../../constants";
+import Navbar from "../components/navbar";
+import "../utils/myCss.css";
+import { navbarType } from "../constants";
 import { Grid, Typography, withStyles } from "@material-ui/core";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import {
@@ -9,8 +9,10 @@ import {
   loadTvs,
   loadFavorite,
   loadMyList,
-} from "../../actions";
+} from "../actions";
 import { connect } from "react-redux";
+import CustomBox from "../components/customBox";
+
 
 class DashboardPage extends Component {
   componentDidMount() {
@@ -24,54 +26,47 @@ class DashboardPage extends Component {
     return (
       <Fragment>
         <Navbar type={navbarType.DASHBOARD} />
-        <div
-          style={{
-            padding: "0px 100px 0px",
-          }}
-        >
+        <div className="padding-body">
           <Typography variant="h3" className={classes.title}>
             Welcome
           </Typography>
           <br />
           <Grid container spacing={3}>
             <Grid item xs={3}>
-              <div className={classes.box}>
-                <div style={{ color: "white", textAlign: "center" }}>
-                  <h2>{this.props.movies.length}</h2>
-                  <p>Movies</p>
-                </div>
-              </div>
+              <CustomBox
+                styleTextContent="h4"
+                title="Movies"
+                content={this.props.movies.length}
+              />
             </Grid>
             <Grid item xs={3}>
-              <div className={classes.box}>
-                <div style={{ color: "white", textAlign: "center" }}>
-                  <h3>{this.props.tvs.length}</h3>
-                  <p>TV Shows</p>
-                </div>
-              </div>
+              <CustomBox
+                styleTextContent="h4"
+                title="TV Shows"
+                content={this.props.tvs.length}
+              />
             </Grid>
             <Grid item xs={3}>
-              <div className={classes.box}>
-                <div style={{ color: "white", textAlign: "center" }}>
-                  <h2>{this.props.favoriteStorage.favorites.length}</h2>
-                  <p>Suggestions</p>
-                </div>
-              </div>
+              <CustomBox
+                styleTextContent="h4"
+                title="Suggestions"
+                content={this.props.favoriteStorage.favorites.length}
+              />
             </Grid>
             <Grid item xs={3}>
-              <div className={classes.box}>
-                <div style={{ color: "white", textAlign: "center" }}>
-                  <h2>{this.props.myListStorage.mylist.length}</h2>
-                  <p>My Movie List</p>
-                </div>
-              </div>
+              <CustomBox
+                styleTextContent="h4"
+                title="My Movie List"
+                content={this.props.myListStorage.mylist.length}
+              />
             </Grid>
           </Grid>
-          <h5
-            style={{ color: "white", textAlign: "center", paddingTop: "30px" }}
+          <Typography
+            variant="h6"
+            style={{ color: "white", textAlign: "center", padding: "40px" }}
           >
             Quick Links
-          </h5>
+          </Typography>
           <Grid container spacing={3}>
             <Grid item xs={6}>
               <Link
@@ -79,11 +74,7 @@ class DashboardPage extends Component {
                   pathname: `/dashboard/suggestion`,
                 }}
               >
-                <div className={classes.box}>
-                  <div style={{ color: "white", textAlign: "center" }}>
-                    <h4>Suggestions</h4>
-                  </div>
-                </div>
+                <CustomBox styleTextContent="h6" content="Suggestions" />
               </Link>
             </Grid>
             <Grid item xs={6}>
@@ -92,11 +83,7 @@ class DashboardPage extends Component {
                   pathname: `/dashboard/add`,
                 }}
               >
-                <div className={classes.box}>
-                  <div style={{ color: "white", textAlign: "center" }}>
-                    <h4>Add</h4>
-                  </div>
-                </div>
+                <CustomBox styleTextContent="h6" content="Add" />
               </Link>
             </Grid>
           </Grid>
@@ -111,13 +98,7 @@ title: {
     color: "white",
     paddingTop: "50px",
   },
-  box: {
-    backgroundColor: "rgba(18, 24, 50, 1)",
-    height: "100%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
+  
 });
 
 const mapStateToProps = ({

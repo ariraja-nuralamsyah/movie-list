@@ -50,6 +50,8 @@ const authenticateUser = async (username, password) => {
 
       const sessionId = sessionData.session_id;
 
+      console.log(sessionData);
+
       return sessionId;
     
 

@@ -76,43 +76,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const numberTogenre = (genres) => {
-  let genNames = [];
-  if(genres !== undefined){
-    genres.map((res, index) =>
-      index === 0 ? genNames.push(res.name) : genNames.push(', '+res.name)
-    );
-  }
-  
-
-  return genNames;
-};
-
-const printRoute = (route) => {
-  const pathArray = route.split("/").slice(1, -1);
-
-  const formattedPath = pathArray.map((item) => {
-    // Capitalize the first letter and replace hyphens with spaces
-    const formattedItem = item.charAt(0).toUpperCase() + item.slice(1);
-    return formattedItem;
-  });
-  const formattedString = formattedPath.join(" / ");
-
-  return formattedString;
-};
-
-const getTypeContent = (route) => {
-  const pathArray = route.split("/").slice(1, -1);
-
-  const formattedPath = pathArray.map((item) => {
-    // Capitalize the first letter and replace hyphens with spaces
-    const formattedItem = item.charAt(0).toUpperCase() + item.slice(1);
-    return formattedItem;
-  });
-
-  return formattedPath[1];
-}
-
 const Amovie = ({ movieinfo }) => {
   const classes = useStyles();
   const location = useLocation();
@@ -121,9 +84,7 @@ const Amovie = ({ movieinfo }) => {
     <div>
       <Navbar type={navbarType.HOME} />
       <div
-        style={{
-          padding: "0px 100px 0px",
-        }}
+        className="padding-body"
       >
         <div className={classes.caption}>
           <div className={classes.captionContainer}>
@@ -281,6 +242,42 @@ const Amovie = ({ movieinfo }) => {
       </div>
     </div>
   );
+};
+
+const numberTogenre = (genres) => {
+  let genNames = [];
+  if (genres !== undefined) {
+    genres.map((res, index) =>
+      index === 0 ? genNames.push(res.name) : genNames.push(", " + res.name)
+    );
+  }
+
+  return genNames;
+};
+
+const printRoute = (route) => {
+  const pathArray = route.split("/").slice(1, -1);
+
+  const formattedPath = pathArray.map((item) => {
+    // Capitalize the first letter and replace hyphens with spaces
+    const formattedItem = item.charAt(0).toUpperCase() + item.slice(1);
+    return formattedItem;
+  });
+  const formattedString = formattedPath.join(" / ");
+
+  return formattedString;
+};
+
+const getTypeContent = (route) => {
+  const pathArray = route.split("/").slice(1, -1);
+
+  const formattedPath = pathArray.map((item) => {
+    // Capitalize the first letter and replace hyphens with spaces
+    const formattedItem = item.charAt(0).toUpperCase() + item.slice(1);
+    return formattedItem;
+  });
+
+  return formattedPath[1];
 };
 
 export default Amovie;

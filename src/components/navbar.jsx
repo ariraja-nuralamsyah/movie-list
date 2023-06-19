@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "rgba(18, 24, 41, 0.8)",
     boxShadow: "none",
     borderBottom: "none",
-    padding: "0px 100px 0px",
   },
   button: {
     display: "flex",
@@ -50,63 +49,67 @@ const Navbar = (prop) => {
 
   return (
     <AppBar position="static" className={classes.appBar}>
-      <Toolbar style={{ padding: "0px" }}>
-        <div style={{ flexGrow: 1 }}>
-          <Link
-            to={{
-              pathname: "/",
-            }}
-          >
-            <img src={logo} alt="Logo" style={{ height: "30px" }} />
-          </Link>
-        </div>
-        {prop.type === navbarType.HOME ? (
-          <>
-            <CustomButton
-              color="inherit"
-              label="Movies"
-              onClick={() => handleClick("/home-page/movie")}
-            />
-            <CustomButton
-              color="inherit"
-              label="TV Shows"
-              onClick={() => handleClick("/home-page/tv")}
-            />
-            <CustomButton
-              color="inherit"
-              rightIcon={<ArrowRightIcon className={classes.icon} />}
-              label="Suggest Me"
-              onClick={() => handleClick("/home-page/suggest")}
-            />
-          </>
-        ) : (
-          <>
-            <CustomButton
-              color="inherit"
-              label="Dashboard"
-              onClick={() => handleClick("/dashboard")}
-            />
-            <CustomButton
-              color="inherit"
-              label="Suggestions"
-              onClick={() => handleClick("/dashboard/suggestion")}
-            />
-            <CustomButton
-              color="inherit"
-              label="Add"
-              onClick={() => handleClick("/dashboard/add")}
-            />
-            <CustomButton
-              color="inherit"
-              leftIcon={<LogoutIcon className={classes.icon} />}
-              label={isLoggedIn ? "Logout" : "Login"}
-              onClick={() =>
-                isLoggedIn ? handleLogoutClick(sessionId) : handleClick("/login")
-              }
-            />
-          </>
-        )}
-      </Toolbar>
+      <div className="padding-body">
+        <Toolbar style={{padding: "0px"}}>
+          <div style={{ flexGrow: 1 }}>
+            <Link
+              to={{
+                pathname: "/",
+              }}
+            >
+              <img src={logo} alt="Logo" style={{ height: "30px" }} />
+            </Link>
+          </div>
+          {prop.type === navbarType.HOME ? (
+            <>
+              <CustomButton
+                color="inherit"
+                label="Movies"
+                onClick={() => handleClick("/home-page/movie")}
+              />
+              <CustomButton
+                color="inherit"
+                label="TV Shows"
+                onClick={() => handleClick("/home-page/tv")}
+              />
+              <CustomButton
+                color="inherit"
+                rightIcon={<ArrowRightIcon className={classes.icon} />}
+                label="Suggest Me"
+                onClick={() => handleClick("/home-page/suggest")}
+              />
+            </>
+          ) : (
+            <>
+              <CustomButton
+                color="inherit"
+                label="Dashboard"
+                onClick={() => handleClick("/dashboard")}
+              />
+              <CustomButton
+                color="inherit"
+                label="Suggestions"
+                onClick={() => handleClick("/dashboard/suggestion")}
+              />
+              <CustomButton
+                color="inherit"
+                label="Add"
+                onClick={() => handleClick("/dashboard/add")}
+              />
+              <CustomButton
+                color="inherit"
+                leftIcon={<LogoutIcon className={classes.icon} />}
+                label={isLoggedIn ? "Logout" : "Login"}
+                onClick={() =>
+                  isLoggedIn
+                    ? handleLogoutClick(sessionId)
+                    : handleClick("/login")
+                }
+              />
+            </>
+          )}
+        </Toolbar>
+      </div>
     </AppBar>
   );
 };

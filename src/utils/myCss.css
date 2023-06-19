@@ -6,6 +6,10 @@ body {
   background-position: center center;
 }
 
+.padding-body{
+  padding: 0px 100px 0px;
+}
+
 .card {
   margin-top: 10px;
 }

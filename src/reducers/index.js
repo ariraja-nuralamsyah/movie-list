@@ -49,6 +49,22 @@ const persistConfig = {
   key: "root",
   storage,
   transforms: [encryptor],
+  blacklist: [
+    "currentpage",
+    "error",
+    "genres",
+    "loading",
+    "movieid",
+    "movieinfo",
+    "movies",
+    "recmovies",
+    "routing",
+    "searchmovies",
+    "searchquery",
+    "searchtv",
+    "totalresults",
+    "tvs",
+  ],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

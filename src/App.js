@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
-import HomePage from "./components/page/home-page";
-import NotFound from "./components/page/not-found";
-import MovieDetail from "./components/page/movie-detail";
-import LoginPage from "./components/page/login-page";
+import HomePage from "./page/homePage";
+import NotFound from "./page/notFound";
+import MovieDetail from "./page/movieDetail";
+import LoginPage from "./page/loginPage";
 import {
   createTheme,
   ThemeProvider,
 } from "@material-ui/core";
 import "./App.css";
 import "../src/utils/myCss.css";
-import DashboardPage from "./components/page/dashboard-page";
+import DashboardPage from "./page/dashboardPage";
 import { connect } from "react-redux";
 
 const theme = createTheme({

@@ -1,9 +1,9 @@
 import React from "react";
-import Navbar from "../navbar";
-import { navbarType } from "../../constants";
-import notFound from "../../utils/404_not_found.png";
+import Navbar from "../components/navbar";
+import { navbarType } from "../constants";
+import notFound from "../utils/404_not_found.png";
 import { makeStyles } from "@material-ui/core";
-import CustomButton from "../customButton";
+import CustomButton from "../components/customButton";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -23,9 +23,7 @@ const NotFound = props => {
     <div>
       <Navbar type={navbarType.HOME} />
       <div
-        style={{
-          padding: "0px 100px 0px",
-        }}
+        className="padding-body"
       >
         <div className={classes.container}>
           <img src={notFound} alt="Not Found" className={classes.image} />

@@ -1,13 +1,13 @@
 import React, { Fragment, useState } from "react";
-import Navbar from "../navbar";
-import "../../utils/myCss.css";
-import { navbarType } from "../../constants";
+import Navbar from "../components/navbar";
+import "../utils/myCss.css";
+import { navbarType } from "../constants";
 import { Grid, Typography, makeStyles } from "@material-ui/core";
-import loginIcon from "../../utils/login_icon.png";
-import CustomInput from "../customInput";
+import loginIcon from "../utils/login_icon.png";
+import CustomInput from "../components/customInput";
 import { Email, LockOpen } from "@material-ui/icons";
-import CustomButton from "../customButton";
-import { loginRequest } from "./../../actions";
+import CustomButton from "../components/customButton";
+import { loginRequest } from "./../actions";
 import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
@@ -47,11 +47,7 @@ const LoginPage = props => {
     return (
       <Fragment>
         <Navbar type={navbarType.DASHBOARD} />
-        <div
-          style={{
-            padding: "0px 100px 0px",
-          }}
-        >
+        <div className="padding-body">
           <Grid
             container
             spacing={3}

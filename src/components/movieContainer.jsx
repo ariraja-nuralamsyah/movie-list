@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import MovieCard from "./movie-card";
+import MovieCard from "./movieCard";
 import { Grid, IconButton, Modal, withStyles } from "@material-ui/core";
 import thankyou from "../utils/thankyou.png";
 import { cardType } from "../constants";

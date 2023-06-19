@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import GridLoader from "react-spinners/GridLoader";
-import Amovie from "../amovie-info";
-import { getaMovie, getaTv, clearStateMovie } from "../../actions";
+import Amovie from "./../components/amovieInfo";
+import { getaMovie, getaTv, clearStateMovie } from "../actions";
 import { connect } from "react-redux";
 import { css } from "@emotion/core";
 
